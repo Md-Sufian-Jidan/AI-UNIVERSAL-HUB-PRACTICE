@@ -1,10 +1,9 @@
-// alert('hello ai hub');
 const loadAi = async (seeMore) => {
     const res = await fetch('https://openapi.programming-hero.com/api/ai/tools');
     const data = await res.json();
     // console.log(data.data);
     const ai = data.data.tools;
-    // console.log(ai);
+    console.log(ai);
     displayAi(ai,seeMore)
 }
 
@@ -49,10 +48,12 @@ const displayAi = (ai,seeMore) => {
         <div>
         <h3 class="card-title my-3">${oneAi.name}</h3>
         <p><i class="fa-solid fa-calendar-days"></i>   <span>${oneAi.published_in
-        }</span></p>
+        }</span></p></div>
+        <div class="h-[50px] w-[50px] rounded-full bg-orange-100 flex justify-center items-center"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
-        <div class="h-[50px] w-[50px] rounded-full bg-orange-100 flex justify-center items-center"><i class="fa-solid fa-arrow-right"></i>
-        </div></div>
+        <div class="my-2 text-center">
+        <button id="seeDetails" onclick="my_modal_5.showModal()" class="btn btn-error">See Details</button>
+        </div>
         </div>
         `;
         displayAi.appendChild(aiCard);
@@ -64,5 +65,54 @@ const seeMoreBtn = () => {
     loadAi(true);
 }
 
+// const seeDetails = () => {
+// // console.log('see details btn clicked');
+// const seeDetailsBtn = document.getElementById('seeDetails');
 
+// }
+const singleAiData = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/ai/tool/01`)
+    const data = await res.json();
+    const aiData = data.data;
+    console.log(aiData);
+    console.log(aiData.pricing[0].price);
+    const singleAiDetails = document.getElementById('singleAiDetails');
+    singleAiDetails.innerHTML = `
+  <section class="flex gap-1 p-10">
+  <div> <div class="container border-white-200">
+  <p>${aiData.description}</p>
+  <div class="flex">
+  <p class="bg-gray-100 p-5 mx-1 rounded-lg gap-1 my-5 text-green-700 font-black">${aiData.pricing[0].price}</p>
+  <p class="bg-gray-100 p-5 mx-1 rounded-lg gap-1 my-5 text-orange-500 font-black">${aiData.pricing[1].price}</p>
+  <p class="bg-gray-100 p-5 mx-1 rounded-lg gap-1 text-red-600 font-black">${aiData.pricing[2].price}</p>
+  </div>
+  <section class="flex">
+  <div class="container rounded bg-red-300 border-red-200 mx-2 p-5">
+  <h3>Features</h3>
+  <ul class="feature-list p-4 list-disc">
+  <li>${aiData.features[1]?.feature_name}</li>
+  <li>${aiData.features[2]?.feature_name}</li>
+  <li>${aiData.features[3]?.feature_name}</li>
+  </ul>
+  </div>
+  <div class="container shadow-xl border-gray-200 p-5">
+  <h3>Integrations</h3>
+  <ul class="feature-list p-4 list-disc">
+  <li>${aiData.integrations[0]}</li>
+  <li>${aiData.integrations[1]}</li>
+  <li>${aiData.integrations[2]}</li>
+  </ul>
+  </div>
+  </section>
+  </div>
+  <p>${aiData.input_output_examples[0]?.input}</p>
+  <p>${aiData.input_output_examples[0]?.output}</p>
+  <div>
+  <img src="${aiData.image_link[1]}"><span></span>
+  </div>
+  </section>
+    `
+};
+
+singleAiData()
 loadAi();
