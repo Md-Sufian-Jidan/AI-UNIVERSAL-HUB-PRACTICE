@@ -17,20 +17,20 @@
     </header>
     <main>
         <section>
-            <div id="ai-container" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
+            <div id="ai-container" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-10">
               </div>
         </section>
         <div id="seeMoreBtn" class="my-3 text-center hidden">
-            <button onclick="seeMoreBtn()" class="btn btn-error">See More</button>
+            <button onclick="handleShowAll()" class="btn bg-green-200">See More</button>
         </div>
         <section>
-            <!-- Open the modal using ID.showModal() method -->
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <div id="singleAiDetails">
+          <!-- Open the modal using ID.showModal() method -->
+<dialog id="seeDetails" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box w-11/12 max-w-5xl">
+    <div id="modal-id">
 
     </div>
-    <div class="modal-action ">
+    <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->
         <button class="btn">Close</button>
@@ -40,7 +40,7 @@
 </dialog>
         </section>
     </main>
-    <footer></footer>
-    <script src="js/api.js"></script>
+   
+    <script src="app.js"></script>
 </body>
 </html>
